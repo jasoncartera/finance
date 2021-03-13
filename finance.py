@@ -18,20 +18,16 @@ cur.execute('''CREATE TABLE IF NOT EXISTS Location (id INTEGER PRIMARY KEY, loca
 #code for listing each cat
 #SELECT Finance.item, Finance.cost, Location.location FROM Finance JOIN Location on Finance.location_id = Location.id WHERE cat_id = 1
 
-print('''Enter read, write, income, or rent.
-         If reading choose from:
-         1. sum all 
-         2. print all 
-         3. sum dates
-         4. sum by month
-         5. print sum by dates
-         6. sum by category
-         7. sum all months
-         8. graph - line plot by date & sum'
-         9. graph by date
-         10. graph by item
-         11. graph by category''')
-         
+print("Enter read, write, income, or rent. \n \
+If reading choose from: \n \
+1. sum all \n \
+2. print all \n \
+3. sum dates \n \
+4. sum by month \n \
+5. print sum by dates \n \
+6. sum by category \n \
+7. sum all months")
+    
 prompt = input('>>> ')
 
 def WriteIncome():
@@ -39,14 +35,6 @@ def WriteIncome():
     date = datetime.date.today()
     value = input('Enter Income: ').rstrip()
     cur.execute('''INSERT INTO Income (date, time, value) VALUES ( ?, ?, ? )''', (date, time, value) )
-    conn.commit()
-
-def WriteRent():
-    time = str(datetime.datetime.now().time() )
-    date = datetime.date.today()
-    value = input('Enter rent: ').rstrip()
-    cur.execute('''INSERT INTO Rent (date, time, value) VALUES ( ?, ?, ? )''', (date, time, value) )
-    
     conn.commit()
          
 #write data 
@@ -141,10 +129,6 @@ while prompt == 'write':
     prompt = input('Next action? ')
     if prompt == 'exit':
         break
-
-while prompt == 'rent':
-    WriteRent()
-    prompt = input('Next action? ')
     
 while prompt == 'income':
     WriteIncome()
